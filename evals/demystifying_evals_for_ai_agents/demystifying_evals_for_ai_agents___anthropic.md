@@ -1,4 +1,4 @@
-![](./Demystifying evals for AI agents _ Anthropic_files/590360609ccdf39715a8ec6916b52447dcb31f16-1000x1000.svg)
+![](./demystifying_evals_for_ai_agents_files/590360609ccdf39715a8ec6916b52447dcb31f16-1000x1000.svg)
 
 # Demystifying evals for AI agents
 
@@ -26,7 +26,7 @@ An **evaluation**(“eval”) is a test for an AI system: give an AI an input, t
 
 **Single-turn evaluations** are straightforward: a prompt, a response, and grading logic. For earlier LLMs, single-turn, non-agentic evals were the main evaluation method. As AI capabilities have advanced, **multi-turn evaluations** have become increasingly common.
 
-![Image](./Demystifying evals for AI agents _ Anthropic_files/bd42e7b2f3e9bb5218142796d3ede4816588dec0-4584x2834.webp)
+![Image](./demystifying_evals_for_ai_agents_files/bd42e7b2f3e9bb5218142796d3ede4816588dec0-4584x2834.webp)
 
 **Agent evaluations**are even more complex. Agents use tools across many turns, modifying state in the environment and adapting as they go—which means mistakes can propagate and compound. Frontier models can also find creative solutions that surpass the limits of static evals. For instance, Opus 4.5 solved a [𝜏2-bench](https://github.com/sierra-research/tau2-bench) problem about booking a flight by [discovering](https://www.anthropic.com/news/claude-opus-4-5) a loophole in the policy. It “failed” the evaluation as written, but actually came up with a better solution for the user.
 
@@ -43,7 +43,7 @@ When building agent evaluations, we use the following definitions:
 - An agent harness (or scaffold) is the system that enables a model to act as an agent: it processes inputs, orchestrates tool calls, and returns results. When we evaluate “an agent,” we’re evaluating the harness and the model working together. For example, [Claude Code](https://claude.com/product/claude-code) is a flexible agent harness, and we used its core primitives through the [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview) to build our [long-running agent harness](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 - An evaluation suite is a collection of tasks designed to measure specific capabilities or behaviors. Tasks in a suite typically share a broad goal. For instance, a customer support eval suite might test refunds, cancellations, and escalations.
 
-![Image](./Demystifying evals for AI agents _ Anthropic_files/0205b36f9639fc27f2f6566f73cb56b06f59d555-4584x2580.webp)
+![Image](./demystifying_evals_for_ai_agents_files/0205b36f9639fc27f2f6566f73cb56b06f59d555-4584x2580.webp)
 
 
 
@@ -187,7 +187,7 @@ Two metrics help capture this nuance:
 
 [pass^k](https://arxiv.org/abs/2406.12045) measures the probability that *all k* trials succeed. As *k* increases, pass^k falls since demanding consistency across more trials is a harder bar to clear. If your agent has a 75% per-trial success rate and you run 3 trials, the probability of passing all three is (0.75)³ ≈ 42%. This metric especially matters for customer-facing agents where users expect reliable behavior every time.
 
-![Image](./Demystifying evals for AI agents _ Anthropic_files/3ddac5be07a0773922ec9df06afec55922f8194a-4584x2580.webp)
+![Image](./demystifying_evals_for_ai_agents_files/3ddac5be07a0773922ec9df06afec55922f8194a-4584x2580.webp)
 
 Both metrics are useful, and which to use depends on product requirements: pass@k for tools where one success matters, pass^k for agents where consistency is essential.
 
